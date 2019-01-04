@@ -54,7 +54,7 @@ public class WinRateMachine {
         /* Create and display the form */
         //java.awt.EventQueue.invokeLater(() -> {
         //    new WRView().setVisible(true);
-        //});
+        ///});
         
 	// HTTP GET request
 
@@ -63,7 +63,7 @@ public class WinRateMachine {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        // optional default is GET
+        // optional default is GET 
         con.setRequestMethod("GET");
 
         //add request header
