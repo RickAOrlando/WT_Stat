@@ -18,6 +18,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form WRView
+     *
      * @throws java.io.IOException
      */
     public WRView() throws IOException {
@@ -38,9 +39,13 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         buttonLoss = new javax.swing.JButton();
         lableWinCounter = new javax.swing.JLabel();
         lableLossCounter = new javax.swing.JLabel();
-        buttonCalculate = new javax.swing.JButton();
         lableCalculateWinRate = new javax.swing.JLabel();
         buttonWinSubtract = new javax.swing.JButton();
+        buttonCalculate = new javax.swing.JButton();
+        buttonWinSubtract1 = new javax.swing.JButton();
+        labelAileronText = new javax.swing.JLabel();
+        labelAileronValue = new javax.swing.JLabel();
+        lableAileronValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,57 +61,83 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         lableLossCounter.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         lableLossCounter.setText("0");
 
-        buttonCalculate.setText("Calculate WinRate");
-        buttonCalculate.addActionListener(this);
-
         lableCalculateWinRate.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         lableCalculateWinRate.setText("0");
 
         buttonWinSubtract.setText("-");
         buttonWinSubtract.addActionListener(this);
 
+        buttonCalculate.setText("Calculate WinRate");
+        buttonCalculate.addActionListener(this);
+
+        buttonWinSubtract1.setText("-");
+        buttonWinSubtract1.addActionListener(this);
+
+        labelAileronText.setText("Aileron: ");
+
+        lableAileronValue.setText("0");
+
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(buttonWinSubtract)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lableWinCounter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                .addComponent(lableLossCounter)
-                .addGap(187, 187, 187))
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelMainLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(buttonCalculate)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lableCalculateWinRate))
                     .addGroup(panelMainLayout.createSequentialGroup()
-                        .addComponent(buttonWin)
-                        .addGap(121, 121, 121)
-                        .addComponent(buttonLoss)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMainLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelAileronText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelAileronValue)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lableAileronValue))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMainLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonWin)
+                                    .addComponent(buttonWinSubtract1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lableWinCounter)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelMainLayout.createSequentialGroup()
+                                .addComponent(buttonLoss)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lableLossCounter))
+                            .addComponent(buttonWinSubtract))))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lableLossCounter)
-                    .addComponent(lableWinCounter)
+                    .addComponent(labelAileronText)
+                    .addComponent(labelAileronValue)
+                    .addComponent(lableAileronValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonWinSubtract1)
                     .addComponent(buttonWinSubtract))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonWin)
-                    .addComponent(buttonLoss))
-                .addGap(51, 51, 51)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCalculate)
-                    .addComponent(lableCalculateWinRate))
-                .addGap(75, 75, 75))
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMainLayout.createSequentialGroup()
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonWin)
+                            .addComponent(buttonLoss)
+                            .addComponent(lableLossCounter))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lableCalculateWinRate)
+                            .addComponent(buttonCalculate)))
+                    .addComponent(lableWinCounter))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,7 +151,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -138,11 +169,14 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         else if (evt.getSource() == buttonLoss) {
             WRView.this.buttonLossActionPerformed(evt);
         }
+        else if (evt.getSource() == buttonWinSubtract) {
+            WRView.this.buttonLossSubtractActionPerformed(evt);
+        }
         else if (evt.getSource() == buttonCalculate) {
             WRView.this.buttonCalculateActionPerformed(evt);
         }
-        else if (evt.getSource() == buttonWinSubtract) {
-            WRView.this.buttonWinSubtractActionPerformed(evt);
+        else if (evt.getSource() == buttonWinSubtract1) {
+            WRView.this.buttonWinSubtract1ActionPerformed(evt);
         }
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,9 +198,24 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         this.lableLossCounter.setText("" + lossCounter);
     }//GEN-LAST:event_buttonLossActionPerformed
 
-    private void buttonWinSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinSubtractActionPerformed
-         
-    }//GEN-LAST:event_buttonWinSubtractActionPerformed
+    private void buttonLossSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLossSubtractActionPerformed
+        if (lossCounter <= 0) {
+            // do nothing
+        } else {
+            lossCounter = lossCounter -= 1;
+            this.lableLossCounter.setText("" + lossCounter);
+        }
+
+    }//GEN-LAST:event_buttonLossSubtractActionPerformed
+
+    private void buttonWinSubtract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinSubtract1ActionPerformed
+        if (winCounter <= 0) {
+            // do nothing
+        } else {
+            winCounter = winCounter -= 1;
+            this.lableWinCounter.setText("" + winCounter);
+        }
+    }//GEN-LAST:event_buttonWinSubtract1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,13 +259,17 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton buttonLoss;
     private javax.swing.JButton buttonWin;
     private javax.swing.JButton buttonWinSubtract;
+    private javax.swing.JButton buttonWinSubtract1;
+    private javax.swing.JLabel labelAileronText;
+    private javax.swing.JLabel labelAileronValue;
+    public javax.swing.JLabel lableAileronValue;
     private javax.swing.JLabel lableCalculateWinRate;
     private javax.swing.JLabel lableLossCounter;
     private javax.swing.JLabel lableWinCounter;
     private javax.swing.JPanel panelMain;
     // End of variables declaration//GEN-END:variables
-    
+
     // Manual variable declaration   
     int winCounter;
     int lossCounter;
-}   // End of Manual variable declaration
+}   // End of Manual variable declaration   

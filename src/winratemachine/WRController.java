@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Pussy Whisperer
@@ -20,10 +22,27 @@ public class WRController {
     
     // Variables
     StringBuffer response;
+    WRView view;
     
     WRController() throws IOException{
+        
+        // Send Get request
         this.httpGetRequest();
+        
+        
+        // Create and display the form
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new WRView().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(WinRateMachine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        // Parse the string
         this.parseString();
+        
+
     }// End WRController constructor
     
     // Methods
@@ -61,7 +80,8 @@ public class WRController {
         System.out.println("The ailerons are currently at: " + aileron + "%" 
                 +"\nThe max fuel is set to: " + maxFuel + "kg"
                 +"\nThe pitch is currently: " + pitch + " degrees"
-        );        
+        ); 
+                
     }
 
     
