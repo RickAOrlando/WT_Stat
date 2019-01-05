@@ -5,6 +5,10 @@
 package winratemachine;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,12 +16,11 @@ import java.awt.event.ActionListener;
  */
 public class WRView extends javax.swing.JFrame implements ActionListener {
 
-
-    
     /**
      * Creates new form WRView
+     * @throws java.io.IOException
      */
-    public WRView() {
+    public WRView() throws IOException {
         initComponents();
     }
 
@@ -152,13 +155,13 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_buttonCalculateActionPerformed
 
     private void buttonWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinActionPerformed
-        controller.winCounter = controller.winCounter += 1;
-        this.lableWinCounter.setText("" + controller.winCounter);
+        winCounter = winCounter += 1;
+        this.lableWinCounter.setText("" + winCounter);
     }//GEN-LAST:event_buttonWinActionPerformed
 
     private void buttonLossActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLossActionPerformed
-        controller.lossCounter = controller.lossCounter += 1;
-        this.lableLossCounter.setText("" + controller.lossCounter);
+        lossCounter = lossCounter += 1;
+        this.lableLossCounter.setText("" + lossCounter);
     }//GEN-LAST:event_buttonLossActionPerformed
 
     private void buttonWinSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinSubtractActionPerformed
@@ -194,7 +197,11 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new WRView().setVisible(true);
+            try {
+                new WRView().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
@@ -208,6 +215,8 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel lableWinCounter;
     private javax.swing.JPanel panelMain;
     // End of variables declaration//GEN-END:variables
-    // Manual variable declaration
-    WRController controller = new WRController();
+    
+    // Manual variable declaration   
+    int winCounter;
+    int lossCounter;
 }   // End of Manual variable declaration
