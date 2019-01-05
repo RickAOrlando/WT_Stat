@@ -3,6 +3,9 @@
  * Class description:
  */
 package winratemachine;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,12 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import static javafx.css.StyleOrigin.USER_AGENT;
 /**
  *
  * @author Pussy Whisperer
@@ -52,11 +50,12 @@ public class WinRateMachine {
         //</editor-fold>
 
         /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(() -> {
-        //    new WRView().setVisible(true);
-        ///});
+        java.awt.EventQueue.invokeLater(() -> {
+            new WRView().setVisible(true);
+        });
         
 	// HTTP GET request
+        
 
         String url = "http://localhost:8111/state";
 
@@ -65,9 +64,6 @@ public class WinRateMachine {
 
         // optional default is GET 
         con.setRequestMethod("GET");
-
-        //add request header
-        //con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'GET' request to URL : " + url);
@@ -86,25 +82,53 @@ public class WinRateMachine {
         //print result
         System.out.println(response.toString());
         
-                String text    =
-                response.toString();// +
-               // "for occurrences of the word 'rudd'.";
+        JsonParser parser = new JsonParser();
+        String json = response.toString();
+        JsonElement jsonTree = parser.parse(json);
+        JsonObject jsonObject = jsonTree.getAsJsonObject();
 
-        String patternString = "valid";
+        JsonElement pitch = jsonObject.get("pitch 1, deg");
+        JsonElement aileron = jsonObject.get("aileron, %");
+        JsonElement maxFuel = jsonObject.get("Mfuel0, kg");
 
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(text);
+        System.out.println("The ailerons are currently at: " + aileron + "%" +
+        "\nThe max fuel is set to: " + maxFuel + "kg");
+        
 
-        int count = 0;
-        while(matcher.find()) {
-            count++;
-            System.out.println("found: " + count + " : "
-                    + matcher.start() + " - " + matcher.end() );
-            System.out.println(matcher.start());
+
+
+//        JSONArray arr = obj1.getJSONArray("posts");
+//        for (int i = 0; i < arr.length(); i++)
+//        {
+//            String post_id = arr.getJSONObject(i).getString("post_id");
+//           
+//        }
+
+        
+        
+        
+        
+//                String text    =
+//                response.toString();// +
+//               // "for occurrences of the word 'rudd'.";
+//
+//        String patternString = "valid";
+//
+//        Pattern pattern = Pattern.compile(patternString);
+//        Matcher matcher = pattern.matcher(text);
+//
+//        int count = 0;
+//        while(matcher.find()) {
+//            count++;
+//            System.out.println("found: " + count + " : "
+//                    + matcher.start() + " - " + matcher.end() );
+//            System.out.println(matcher.start());
+        
         }
+
     }
   
-  }
+  
 
         
     
