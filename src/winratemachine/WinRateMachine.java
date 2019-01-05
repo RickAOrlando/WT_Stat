@@ -93,37 +93,7 @@ public class WinRateMachine {
 
         System.out.println("The ailerons are currently at: " + aileron + "%" +
         "\nThe max fuel is set to: " + maxFuel + "kg");
-        
-
-
-
-//        JSONArray arr = obj1.getJSONArray("posts");
-//        for (int i = 0; i < arr.length(); i++)
-//        {
-//            String post_id = arr.getJSONObject(i).getString("post_id");
-//           
-//        }
-
-        
-        
-        
-        
-//                String text    =
-//                response.toString();// +
-//               // "for occurrences of the word 'rudd'.";
-//
-//        String patternString = "valid";
-//
-//        Pattern pattern = Pattern.compile(patternString);
-//        Matcher matcher = pattern.matcher(text);
-//
-//        int count = 0;
-//        while(matcher.find()) {
-//            count++;
-//            System.out.println("found: " + count + " : "
-//                    + matcher.start() + " - " + matcher.end() );
-//            System.out.println(matcher.start());
-        
+               
         }
 
     }
