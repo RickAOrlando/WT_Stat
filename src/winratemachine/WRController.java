@@ -12,41 +12,30 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author Pussy Whisperer
  */
+
 public class WRController {
     
     // Variables
     StringBuffer response;
-    WRView view;
     
-    WRController() throws IOException{
-        
-        // Send Get request
-        this.httpGetRequest();
-        
-        
-        // Create and display the form
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new WRView().setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(WinRateMachine.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        
-        // Parse the string
-        this.parseString();
-        
+    WRController() throws IOException {
+    
+    this.bufferedReader(this.httpGetRequest());
+
+    // Test passing in parsing argument
+    System.out.println("The parsed argument shows: " + this.parseString("pitch 1, deg"));
+    
+    WRView view = new WRView();
 
     }// End WRController constructor
     
     // Methods
-    public void httpGetRequest() throws MalformedURLException, IOException{
+    // Http URL connection established
+    public HttpURLConnection httpGetRequest() throws MalformedURLException, IOException{
         String url = "http://localhost:8111/state";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -55,10 +44,14 @@ public class WRController {
         
         System.out.println("\nSending 'GET' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
-
         
+        return con;
+    }
+    
+    // Buffered Reader that take httpGetRequest as argument
+    public void bufferedReader(HttpURLConnection connection) throws IOException{
         try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()))) {
+                new InputStreamReader(connection.getInputStream()))) {
             String inputLine;
             response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -66,27 +59,18 @@ public class WRController {
             }
         }
     }
-    
-    public void parseString(){
+    // Parse the string and create a tree and JSON object
+    public JsonElement parseString(String element){
         JsonParser parser = new JsonParser();
         String json = response.toString();
         JsonElement jsonTree = parser.parse(json);
         JsonObject jsonObject = jsonTree.getAsJsonObject();
 
-        JsonElement pitch = jsonObject.get("pitch 1, deg");
-        JsonElement aileron = jsonObject.get("aileron, %");
-        JsonElement maxFuel = jsonObject.get("Mfuel0, kg");
-        JsonElement ias = jsonObject.get("IAS, km/h");
-        JsonElement flaps = jsonObject.get("flaps, %");
+        JsonElement newElement = jsonObject.get(element);
 
-        System.out.println("The ailerons are currently at: " + aileron + "%" 
-                +"\nThe max fuel is set to: " + maxFuel + "kg"
-                +"\nThe pitch is currently: " + pitch + " degrees"
-                +"\nYour speed is currently: " + ias + " km/h"
-                +"\nYour flaps are currently: " + flaps + " "
-        ); 
-                
+        System.out.println("\nThe pitch is currently: " + newElement + " degrees");
+        
+        return newElement;
     }
 
-    
 }// End controller class

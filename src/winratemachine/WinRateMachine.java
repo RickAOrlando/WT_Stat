@@ -24,6 +24,19 @@ public class WinRateMachine {
         // Instantiate the WRController class
         WRController controller = new WRController();
 
+        // Create and display the form
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new WRView().setVisible(true);
+                    
+                } catch (IOException ex) {
+                    
+                }
+              
+            }
+        });
         }// End Main class
     }// End WinRateMachine class
   
