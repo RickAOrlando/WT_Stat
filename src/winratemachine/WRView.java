@@ -6,6 +6,7 @@ package winratemachine;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -19,7 +20,16 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
      * @throws java.io.IOException
      */
     public WRView() throws IOException {
+        // Initialize GUI visual components
         initComponents();
+        
+        // Instantiate the controller
+        controller = new WRController();
+        
+        // Establish the connection and updating field
+        
+        controller.bufferedReader(controller.httpGetRequest());
+        this.lableAileronValue.setText(controller.parseString("pitch 1, deg").getAsString()); 
     }
 
     @SuppressWarnings("unchecked")

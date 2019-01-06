@@ -22,16 +22,10 @@ public class WRController {
     // Variables
     StringBuffer response;
     
+    // Contructor
     WRController() throws IOException {
-    
-    this.bufferedReader(this.httpGetRequest());
 
-    // Test passing in parsing argument
-    System.out.println("The parsed argument shows: " + this.parseString("pitch 1, deg"));
-    
-    WRView view = new WRView();
-
-    }// End WRController constructor
+    }
     
     // Methods
     // Http URL connection established
@@ -59,7 +53,9 @@ public class WRController {
             }
         }
     }
+    
     // Parse the string and create a tree and JSON object
+    // This allows for the creation and return of elements
     public JsonElement parseString(String element){
         JsonParser parser = new JsonParser();
         String json = response.toString();
@@ -67,8 +63,6 @@ public class WRController {
         JsonObject jsonObject = jsonTree.getAsJsonObject();
 
         JsonElement newElement = jsonObject.get(element);
-
-        System.out.println("\nThe pitch is currently: " + newElement + " degrees");
         
         return newElement;
     }

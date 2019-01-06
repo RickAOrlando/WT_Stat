@@ -22,19 +22,14 @@ public class WinRateMachine {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, MalformedURLException, ProtocolException, IOException {
 
         // Instantiate the WRController class
-        WRController controller = new WRController();
 
         // Create and display the form
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    new WRView().setVisible(true);
-                    
-                } catch (IOException ex) {
-                    
-                }
-              
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new WRView().setVisible(true);
+                
+            } catch (IOException ex) {
+                
             }
         });
         }// End Main class
