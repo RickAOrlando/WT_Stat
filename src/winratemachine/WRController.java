@@ -76,10 +76,14 @@ public class WRController {
         JsonElement pitch = jsonObject.get("pitch 1, deg");
         JsonElement aileron = jsonObject.get("aileron, %");
         JsonElement maxFuel = jsonObject.get("Mfuel0, kg");
+        JsonElement ias = jsonObject.get("IAS, km/h");
+        JsonElement flaps = jsonObject.get("flaps, %");
 
         System.out.println("The ailerons are currently at: " + aileron + "%" 
                 +"\nThe max fuel is set to: " + maxFuel + "kg"
                 +"\nThe pitch is currently: " + pitch + " degrees"
+                +"\nYour speed is currently: " + ias + " km/h"
+                +"\nYour flaps are currently: " + flaps + " "
         ); 
                 
     }
