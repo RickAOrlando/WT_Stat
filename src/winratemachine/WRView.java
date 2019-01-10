@@ -4,12 +4,17 @@
  */
 package winratemachine;
 
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 /**
  *
  * @author Pussy Whisperer
@@ -29,12 +34,12 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         // Instantiate the controller
         controller = new WRController();
         
-
-        // Establish the connection and updating field
-        controller.bufferedReader(controller.httpGetRequest());
-        this.lableAileronValue.setText(controller.parseString("aileron, %").getAsString()); 
-
-    }
+        // Calling timer task method using arguments to pass in the labels 
+        // and panels to be changed and updated
+        givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(
+                this.labelPitchValue, this.lableAileronValue, 
+                this.aircraftUpdatePanel);
+    }   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,7 +58,8 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         aircraftUpdatePanel = new javax.swing.JPanel();
         labelAileronText = new javax.swing.JLabel();
         lableAileronValue = new javax.swing.JLabel();
-        buttonTestActionListener = new javax.swing.JButton();
+        labelPitch = new javax.swing.JLabel();
+        labelPitchValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,16 +91,26 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
 
         lableAileronValue.setText("0");
 
+        labelPitch.setText("Pitch: ");
+
+        labelPitchValue.setText("0");
+
         javax.swing.GroupLayout aircraftUpdatePanelLayout = new javax.swing.GroupLayout(aircraftUpdatePanel);
         aircraftUpdatePanel.setLayout(aircraftUpdatePanelLayout);
         aircraftUpdatePanelLayout.setHorizontalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelAileronText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lableAileronValue)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
+                        .addComponent(labelAileronText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lableAileronValue))
+                    .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
+                        .addComponent(labelPitch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelPitchValue)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         aircraftUpdatePanelLayout.setVerticalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,11 +119,12 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                 .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAileronText)
                     .addComponent(lableAileronValue))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPitch)
+                    .addComponent(labelPitchValue))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
-
-        buttonTestActionListener.setText("Test Update Panel");
-        buttonTestActionListener.addActionListener(this);
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -141,10 +158,8 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                             .addComponent(buttonWinSubtract)))
                     .addGroup(panelMainLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(buttonTestActionListener)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                        .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +167,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addComponent(labelAileronValue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTestActionListener))
+                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonWinSubtract1)
@@ -212,9 +225,6 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         else if (evt.getSource() == buttonWinSubtract1) {
             WRView.this.buttonWinSubtract1ActionPerformed(evt);
         }
-        else if (evt.getSource() == buttonTestActionListener) {
-            WRView.this.buttonTestActionListenerActionPerformed(evt);
-        }
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -254,26 +264,48 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         }
     }//GEN-LAST:event_buttonWinSubtract1ActionPerformed
 
-    private void buttonTestActionListenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTestActionListenerActionPerformed
-        try {
+    // Timer task method
+    // This method is where you add arguments as JLabels, then use that argument
+    // to set the text on that label
+    public void givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(JLabel labelPitchValue, JLabel labelAileronValue, JPanel aircraftUpdatePanel){
+    TimerTask repeatedTask;
+        repeatedTask = new TimerTask() {
+            @Override
+            public void run() {
+                
+                        try {
             controller.bufferedReader(controller.httpGetRequest());
         } catch (IOException ex) {
             Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.lableAileronValue.setText(controller.parseString("aileron, %").getAsString()); 
-        this.aircraftUpdatePanel.revalidate();
-    }//GEN-LAST:event_buttonTestActionListenerActionPerformed
-
+                // This is where you use the argument to set the label
+                labelPitchValue.setText(controller.parseString("pitch 1, deg").getAsString());
+                labelAileronValue.setText(controller.parseString("aileron, %").getAsString());
+                aircraftUpdatePanel.revalidate();
+                
+                System.out.println("Task performed on " + new Date());
+            }
+        };
+    Timer timer = new Timer("Timer");
+     
+    // Timer start delay
+    long delay  = 100L;
+    // Timer repeat interval 
+    long period = 50L;
+    timer.scheduleAtFixedRate(repeatedTask, delay, period);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aircraftUpdatePanel;
     private javax.swing.JButton buttonCalculate;
     private javax.swing.JButton buttonLoss;
-    private javax.swing.JButton buttonTestActionListener;
     private javax.swing.JButton buttonWin;
     private javax.swing.JButton buttonWinSubtract;
     private javax.swing.JButton buttonWinSubtract1;
     private javax.swing.JLabel labelAileronText;
     private javax.swing.JLabel labelAileronValue;
+    private javax.swing.JLabel labelPitch;
+    private javax.swing.JLabel labelPitchValue;
     public javax.swing.JLabel lableAileronValue;
     private javax.swing.JLabel lableCalculateWinRate;
     private javax.swing.JLabel lableLossCounter;
