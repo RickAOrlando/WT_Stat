@@ -36,12 +36,10 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         
         // Calling timer task method using arguments to pass in the labels 
         // and panels to be changed and updated
-        givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(
-                this.labelHPValue, this.labelThrottleValue, 
+        initializeTimerOn(this.labelHPValue, this.labelThrottleValue, 
                 this.labelPitchValue, this.labelAileronValue, 
                 this.aircraftUpdatePanel);
-        
-    }   
+        }   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -68,6 +66,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         labelHPValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         buttonWin.setText("Win");
         buttonWin.addActionListener(this);
@@ -262,7 +261,6 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
             WRView.this.buttonWinSubtract1ActionPerformed(evt);
         }
     }// </editor-fold>//GEN-END:initComponents
-
     
     private void buttonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCalculateActionPerformed
         double wc = Integer.parseInt(this.labelWinCounter.getText());
@@ -303,7 +301,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     // Timer task method
     // This method is where you add arguments as JLabels, then use that argument
     // to set the text on that label
-    public void givenUsingTimer_whenSchedulingRepeatedTask_thenCorrect(
+    public void initializeTimerOn(
             JLabel labelHPValue, JLabel labelThrottleValue, 
             JLabel labelPitchValue, JLabel labelAileronValue, 
             JPanel aircraftUpdatePanel){
@@ -313,11 +311,11 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
             @Override
             public void run() {
                 
-                        try {
-            controller.bufferedReader(controller.httpGetRequest());
-        } catch (IOException ex) {
-            Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    controller.bufferedReader(controller.httpGetRequest());
+                }   catch (IOException ex) {
+                            Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             // This is where you use the argument to set the label
             labelHPValue.setText(controller.parseString("power 1, hp").getAsString());
             labelThrottleValue.setText(controller.parseString("RPM throttle 1, %").getAsString());
