@@ -278,20 +278,20 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         } catch (IOException ex) {
             Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
         }
-                // This is where you use the argument to set the label
-                labelPitchValue.setText(controller.parseString("pitch 1, deg").getAsString());
-                labelAileronValue.setText(controller.parseString("aileron, %").getAsString());
-                aircraftUpdatePanel.revalidate();
-                
-                System.out.println("Task performed on " + new Date());
+            // This is where you use the argument to set the label
+            labelPitchValue.setText(controller.parseString("pitch 1, deg").getAsString());
+            labelAileronValue.setText(controller.parseString("aileron, %").getAsString());
+            aircraftUpdatePanel.revalidate();
+
+            System.out.println("Task performed on " + new Date());
             }
         };
     Timer timer = new Timer("Timer");
      
     // Timer start delay
-    long delay  = 100L;
+    long delay  = 500L;
     // Timer repeat interval 
-    long period = 50L;
+    long period = 150L;
     timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
