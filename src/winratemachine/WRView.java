@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  *
  * @author Pussy Whisperer
  */
-public class WRView extends javax.swing.JFrame implements ActionListener {
+public class WRView extends javax.swing.JFrame {
 
     /**
      * Creates new form WRView
@@ -46,14 +46,6 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         panelMain = new javax.swing.JPanel();
-        buttonWin = new javax.swing.JButton();
-        buttonLoss = new javax.swing.JButton();
-        labelWinCounter = new javax.swing.JLabel();
-        labelLossCounter = new javax.swing.JLabel();
-        labelCalculateWinRate = new javax.swing.JLabel();
-        buttonWinSubtract = new javax.swing.JButton();
-        buttonCalculate = new javax.swing.JButton();
-        buttonWinSubtract1 = new javax.swing.JButton();
         removeThisValue = new javax.swing.JLabel();
         aircraftUpdatePanel = new javax.swing.JPanel();
         labelAileronText = new javax.swing.JLabel();
@@ -67,55 +59,48 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(102, 102, 102));
+        setUndecorated(true);
+        setOpacity(0.55F);
 
-        buttonWin.setText("Win");
-        buttonWin.addActionListener(this);
+        panelMain.setBackground(new java.awt.Color(102, 102, 102));
+        panelMain.setForeground(new java.awt.Color(102, 0, 0));
+        panelMain.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        buttonLoss.setText("Loss");
-        buttonLoss.addActionListener(this);
-
-        labelWinCounter.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        labelWinCounter.setText("0");
-
-        labelLossCounter.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        labelLossCounter.setText("0");
-
-        labelCalculateWinRate.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        labelCalculateWinRate.setText("0");
-
-        buttonWinSubtract.setText("-");
-        buttonWinSubtract.addActionListener(this);
-
-        buttonCalculate.setText("Calculate WinRate");
-        buttonCalculate.addActionListener(this);
-
-        buttonWinSubtract1.setText("-");
-        buttonWinSubtract1.addActionListener(this);
-
+        aircraftUpdatePanel.setBackground(new java.awt.Color(102, 102, 102));
+        aircraftUpdatePanel.setForeground(new java.awt.Color(102, 0, 0));
         aircraftUpdatePanel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         labelAileronText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelAileronText.setForeground(new java.awt.Color(102, 0, 0));
         labelAileronText.setText("Aileron: ");
 
         labelAileronValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelAileronValue.setForeground(new java.awt.Color(255, 0, 0));
         labelAileronValue.setText("0");
 
         labelPitch.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelPitch.setForeground(new java.awt.Color(102, 0, 0));
         labelPitch.setText("Pitch: ");
 
         labelPitchValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelPitchValue.setForeground(new java.awt.Color(255, 0, 0));
         labelPitchValue.setText("0");
 
         labelThrottleText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelThrottleText.setForeground(new java.awt.Color(102, 0, 0));
         labelThrottleText.setText("Throttle: ");
 
         labelThrottleValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelThrottleValue.setForeground(new java.awt.Color(255, 0, 0));
         labelThrottleValue.setText("0");
 
         labelHPText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelHPText.setForeground(new java.awt.Color(102, 0, 0));
         labelHPText.setText("HorsePower: ");
 
         labelHPValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelHPValue.setForeground(new java.awt.Color(255, 0, 0));
         labelHPValue.setText("0");
 
         javax.swing.GroupLayout aircraftUpdatePanelLayout = new javax.swing.GroupLayout(aircraftUpdatePanel);
@@ -141,7 +126,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                         .addComponent(labelHPText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelHPValue)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         aircraftUpdatePanelLayout.setVerticalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +147,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                 .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelHPText)
                     .addComponent(labelHPValue))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
@@ -170,134 +155,36 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(removeThisValue))
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonWin)
-                            .addComponent(buttonWinSubtract1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLoss)
-                            .addComponent(labelWinCounter))
-                        .addGap(266, 266, 266)
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelLossCounter)
-                            .addComponent(buttonWinSubtract)))
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(buttonCalculate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCalculateWinRate)
-                            .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removeThisValue)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+            .addGroup(panelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(removeThisValue)
-                .addGap(114, 114, 114)
-                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonWinSubtract1)
-                    .addComponent(buttonWinSubtract))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonWin)
-                            .addComponent(buttonLoss)
-                            .addComponent(labelLossCounter))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCalculateWinRate)
-                            .addComponent(buttonCalculate)))
-                    .addComponent(labelWinCounter))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
         );
 
-        pack();
-    }
-
-    // Code for dispatching events from components to event handlers.
-
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        if (evt.getSource() == buttonWin) {
-            WRView.this.buttonWinActionPerformed(evt);
-        }
-        else if (evt.getSource() == buttonLoss) {
-            WRView.this.buttonLossActionPerformed(evt);
-        }
-        else if (evt.getSource() == buttonWinSubtract) {
-            WRView.this.buttonLossSubtractActionPerformed(evt);
-        }
-        else if (evt.getSource() == buttonCalculate) {
-            WRView.this.buttonCalculateActionPerformed(evt);
-        }
-        else if (evt.getSource() == buttonWinSubtract1) {
-            WRView.this.buttonWinSubtract1ActionPerformed(evt);
-        }
+        setBounds(500, 0, 214, 148);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void buttonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCalculateActionPerformed
-        double wc = Integer.parseInt(this.labelWinCounter.getText());
-        double lc = Integer.parseInt(this.labelLossCounter.getText());
-        double total = wc + lc;
-        double calc = wc / total;
-        this.labelCalculateWinRate.setText(calc + "");
-    }//GEN-LAST:event_buttonCalculateActionPerformed
-
-    private void buttonWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinActionPerformed
-        winCounter = winCounter += 1;
-        this.labelWinCounter.setText("" + winCounter);
-    }//GEN-LAST:event_buttonWinActionPerformed
-
-    private void buttonLossActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLossActionPerformed
-        lossCounter = lossCounter += 1;
-        this.labelLossCounter.setText("" + lossCounter);
-    }//GEN-LAST:event_buttonLossActionPerformed
-
-    private void buttonLossSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLossSubtractActionPerformed
-        if (lossCounter <= 0) {
-            // do nothing
-        } else {
-            lossCounter = lossCounter -= 1;
-            this.labelLossCounter.setText("" + lossCounter);
-        }
-    }//GEN-LAST:event_buttonLossSubtractActionPerformed
-
-    private void buttonWinSubtract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWinSubtract1ActionPerformed
-        if (winCounter <= 0) {
-            // do nothing
-        } else {
-            winCounter = winCounter -= 1;
-            this.labelWinCounter.setText("" + winCounter);
-        }
-    }//GEN-LAST:event_buttonWinSubtract1ActionPerformed
-
     // Timer task method
     // This method is where you add arguments as JLabels, then use that argument
     // to set the text on that label
@@ -331,28 +218,20 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     // Timer start delay
     long delay  = 500L;
     // Timer repeat interval 
-    long period = 150L;
+    long period = 75L;
     timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aircraftUpdatePanel;
-    private javax.swing.JButton buttonCalculate;
-    private javax.swing.JButton buttonLoss;
-    private javax.swing.JButton buttonWin;
-    private javax.swing.JButton buttonWinSubtract;
-    private javax.swing.JButton buttonWinSubtract1;
     private javax.swing.JLabel labelAileronText;
-    public javax.swing.JLabel labelAileronValue;
-    private javax.swing.JLabel labelCalculateWinRate;
+    private javax.swing.JLabel labelAileronValue;
     private javax.swing.JLabel labelHPText;
     private javax.swing.JLabel labelHPValue;
-    private javax.swing.JLabel labelLossCounter;
     private javax.swing.JLabel labelPitch;
     private javax.swing.JLabel labelPitchValue;
     private javax.swing.JLabel labelThrottleText;
     private javax.swing.JLabel labelThrottleValue;
-    private javax.swing.JLabel labelWinCounter;
     private javax.swing.JPanel panelMain;
     private javax.swing.JLabel removeThisValue;
     // End of variables declaration//GEN-END:variables
