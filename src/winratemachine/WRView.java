@@ -180,12 +180,24 @@ public class WRView extends javax.swing.JFrame {
             // Horsepower
             labelHPValue.setText(controller.parseString("power 1, hp").getAsString());
             
-            // Check throttle for WEP
-            if (controller.parseString("throttle 1, %").getAsInt() > 100){
-                labelThrottle.setText("WEP");
-            }else{
-                labelThrottle.setText(controller.parseString("throttle 1, %").getAsString());
-            }
+                // Check throttle for WEP
+                switch (controller.parseString("throttle 1, %").getAsInt()) {
+                    case 103:
+                        labelThrottle.setText("WEP Stage 1");
+                        break;
+                    case 105:
+                        labelThrottle.setText("WEP Stage 2");
+                        break;
+                    case 108:
+                        labelThrottle.setText("WEP Stage 3");
+                        break;
+                    case 110:
+                        labelThrottle.setText("WEP MAX POWER");
+                        break;
+                    default:
+                        labelThrottle.setText(controller.parseString("throttle 1, %").getAsString());
+                        break;
+                }
             
             // Update the panel to show changes
             aircraftUpdatePanel.revalidate();
