@@ -36,7 +36,8 @@ public class WRView extends javax.swing.JFrame {
         
         // Calling timer task method using arguments to pass in the labels 
         // and panels to be changed and updated
-        initializeTimerOn(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
+        initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
+        this.initializeTimerOnMission();
         }   
 
     @SuppressWarnings("unchecked")
@@ -163,16 +164,15 @@ public class WRView extends javax.swing.JFrame {
     // Timer task method
     // This method is where you add arguments as JLabels, then use that argument
     // to set the text on that label
-    public void initializeTimerOn(
+    public void initializeTimerOnState(
             JLabel labelHPValue, JLabel labelThrottle, JPanel aircraftUpdatePanel){
-        
     TimerTask repeatedTask;
         repeatedTask = new TimerTask() {
             @Override
             public void run() {
                 
                 try {
-                    controller.bufferedReader(controller.httpGetRequest());
+                    controller.bufferedReader(controller.httpGetRequestState());
                 }   catch (IOException ex) {
                             Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -205,7 +205,30 @@ public class WRView extends javax.swing.JFrame {
             System.out.println("Task performed on " + new Date());
             }
         };
-    Timer timer = new Timer("Timer");
+    Timer timer2 = new Timer("Timer");
+     
+    // Timer start delay
+    long delay  = 500L;
+    // Timer repeat interval 
+    long period = 50L;
+    timer2.scheduleAtFixedRate(repeatedTask, delay, period);
+    }
+    
+    public void initializeTimerOnMission()
+    {
+    TimerTask repeatedTask;
+        repeatedTask = new TimerTask() 
+        {
+            @Override
+            public void run() 
+            {
+                //controller.bufferedReader(controller.httpGetRequestMission());
+                System.out.println("Mission try statement success");
+                    System.out.println("Revalidate mission test");
+                    System.out.println("Got mission information on " + new Date());
+            }
+        };
+                    Timer timer = new Timer("Timer");
      
     // Timer start delay
     long delay  = 500L;
@@ -213,6 +236,7 @@ public class WRView extends javax.swing.JFrame {
     long period = 50L;
     timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aircraftUpdatePanel;
