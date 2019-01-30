@@ -36,7 +36,7 @@ public class WRView extends javax.swing.JFrame {
         
         // Calling timer task method using arguments to pass in the labels 
         // and panels to be changed and updated
-        initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
+        //initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
         this.initializeTimerOnMission();
         }   
 
@@ -53,6 +53,12 @@ public class WRView extends javax.swing.JFrame {
         labelRPMThrottle = new javax.swing.JLabel();
         labelThrottleValue = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        labelWinText = new javax.swing.JLabel();
+        labeWinValue = new javax.swing.JLabel();
+        labelLossText = new javax.swing.JLabel();
+        labeLossValue = new javax.swing.JLabel();
+        labelWRText = new javax.swing.JLabel();
+        labeWRValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -85,6 +91,18 @@ public class WRView extends javax.swing.JFrame {
         labelThrottleValue.setForeground(new java.awt.Color(255, 0, 0));
         labelThrottleValue.setText("0");
 
+        labelWinText.setText("Win: ");
+
+        labeWinValue.setText("0");
+
+        labelLossText.setText("Loss: ");
+
+        labeLossValue.setText("0");
+
+        labelWRText.setText("WinRate: ");
+
+        labeWRValue.setText("0");
+
         javax.swing.GroupLayout aircraftUpdatePanelLayout = new javax.swing.GroupLayout(aircraftUpdatePanel);
         aircraftUpdatePanel.setLayout(aircraftUpdatePanelLayout);
         aircraftUpdatePanelLayout.setHorizontalGroup(
@@ -107,11 +125,33 @@ public class WRView extends javax.swing.JFrame {
                                     .addComponent(labelHPValue))
                                 .addGap(0, 126, Short.MAX_VALUE)))
                         .addContainerGap())))
+            .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(labelWinText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labeWinValue)
+                .addGap(18, 18, 18)
+                .addComponent(labelLossText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labeLossValue)
+                .addGap(18, 18, 18)
+                .addComponent(labelWRText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labeWRValue)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         aircraftUpdatePanelLayout.setVerticalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWinText)
+                    .addComponent(labeWinValue)
+                    .addComponent(labelLossText)
+                    .addComponent(labeLossValue)
+                    .addComponent(labelWRText)
+                    .addComponent(labeWRValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,7 +195,7 @@ public class WRView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
         );
 
         setBounds(0, 500, 282, 116);
@@ -173,9 +213,9 @@ public class WRView extends javax.swing.JFrame {
                 
                 try {
                     controller.bufferedReader(controller.httpGetRequestState());
-                }   catch (IOException ex) {
-                            Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             // This is where you use the argument to set the label
             // Horsepower
             labelHPValue.setText(controller.parseString("power 1, hp").getAsString());
@@ -222,9 +262,16 @@ public class WRView extends javax.swing.JFrame {
             @Override
             public void run() 
             {
-                //controller.bufferedReader(controller.httpGetRequestMission());
-                System.out.println("Mission try statement success");
-                    System.out.println("Revalidate mission test");
+                try {
+                    controller.bufferedReader(controller.httpGetRequestMission());
+                } catch (IOException ex) {
+                    Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    // Set labels to show values
+                    labelHPValue.setText(controller.parseString("status").getAsString());
+                    
+                    // Update panel and print tests
+                    aircraftUpdatePanel.revalidate();
                     System.out.println("Got mission information on " + new Date());
             }
         };
@@ -242,10 +289,16 @@ public class WRView extends javax.swing.JFrame {
     private javax.swing.JPanel aircraftUpdatePanel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labeLossValue;
+    public javax.swing.JLabel labeWRValue;
+    private javax.swing.JLabel labeWinValue;
     private javax.swing.JLabel labelHPText;
     private javax.swing.JLabel labelHPValue;
+    private javax.swing.JLabel labelLossText;
     private javax.swing.JLabel labelRPMThrottle;
     private javax.swing.JLabel labelThrottleValue;
+    private javax.swing.JLabel labelWRText;
+    private javax.swing.JLabel labelWinText;
     private javax.swing.JPanel panelMain;
     private javax.swing.JLabel removeThisValue;
     // End of variables declaration//GEN-END:variables
