@@ -37,7 +37,7 @@ public class WRView extends javax.swing.JFrame {
         // Calling timer task method using arguments to pass in the labels 
         // and panels to be changed and updated
         //initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
-        this.initializeTimerOnMission();
+        this.initializeTimerOnMission(this.labelStatusValue);
         }   
 
     @SuppressWarnings("unchecked")
@@ -47,11 +47,9 @@ public class WRView extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         removeThisValue = new javax.swing.JLabel();
         aircraftUpdatePanel = new javax.swing.JPanel();
-        labelHPText = new javax.swing.JLabel();
-        labelHPValue = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        labelRPMThrottle = new javax.swing.JLabel();
-        labelThrottleValue = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
+        labelStatusValue = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         labelWinText = new javax.swing.JLabel();
         labeWinValue = new javax.swing.JLabel();
@@ -75,32 +73,30 @@ public class WRView extends javax.swing.JFrame {
         aircraftUpdatePanel.setForeground(new java.awt.Color(102, 0, 0));
         aircraftUpdatePanel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        labelHPText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelHPText.setForeground(new java.awt.Color(255, 255, 255));
-        labelHPText.setText("HorsePower: ");
+        labelStatus.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelStatus.setForeground(new java.awt.Color(255, 255, 255));
+        labelStatus.setText("Status:  ");
 
-        labelHPValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelHPValue.setForeground(new java.awt.Color(255, 0, 0));
-        labelHPValue.setText("0");
+        labelStatusValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelStatusValue.setForeground(new java.awt.Color(255, 0, 0));
+        labelStatusValue.setText("0");
 
-        labelRPMThrottle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelRPMThrottle.setForeground(new java.awt.Color(255, 255, 255));
-        labelRPMThrottle.setText("Throttle: ");
-
-        labelThrottleValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelThrottleValue.setForeground(new java.awt.Color(255, 0, 0));
-        labelThrottleValue.setText("0");
-
+        labelWinText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelWinText.setText("Win: ");
 
+        labeWinValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labeWinValue.setText("0");
 
+        labelLossText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelLossText.setText("Loss: ");
 
+        labeLossValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labeLossValue.setText("0");
 
+        labelWRText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelWRText.setText("WinRate: ");
 
+        labeWRValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labeWRValue.setText("0");
 
         javax.swing.GroupLayout aircraftUpdatePanelLayout = new javax.swing.GroupLayout(aircraftUpdatePanel);
@@ -115,15 +111,11 @@ public class WRView extends javax.swing.JFrame {
                         .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2)
                             .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelRPMThrottle, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelHPText, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(58, 58, 58)
+                                .addComponent(labelStatus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelThrottleValue)
-                                    .addComponent(labelHPValue))
-                                .addGap(0, 126, Short.MAX_VALUE)))
+                                .addComponent(labelStatusValue)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(aircraftUpdatePanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
@@ -138,7 +130,7 @@ public class WRView extends javax.swing.JFrame {
                 .addComponent(labelWRText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labeWRValue)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
         aircraftUpdatePanelLayout.setVerticalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,15 +145,11 @@ public class WRView extends javax.swing.JFrame {
                     .addComponent(labeWRValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelRPMThrottle)
-                    .addComponent(labelThrottleValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHPText)
-                    .addComponent(labelHPValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(labelStatus)
+                    .addComponent(labelStatusValue))
+                .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -171,8 +159,9 @@ public class WRView extends javax.swing.JFrame {
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(73, 73, 73)
                 .addComponent(removeThisValue)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -182,23 +171,24 @@ public class WRView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(removeThisValue)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelMainLayout.createSequentialGroup()
-                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 282, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 345, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
         );
 
-        setBounds(0, 500, 282, 116);
+        setBounds(0, 500, 345, 116);
     }// </editor-fold>//GEN-END:initComponents
     
     // Timer task method
@@ -254,8 +244,12 @@ public class WRView extends javax.swing.JFrame {
     timer2.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
-    public void initializeTimerOnMission()
+    public void initializeTimerOnMission(JLabel statusValue)
     {
+        // Variables
+        String status = controller.parseString("status").getAsString();
+            
+        
     TimerTask repeatedTask;
         repeatedTask = new TimerTask() 
         {
@@ -268,7 +262,10 @@ public class WRView extends javax.swing.JFrame {
                     Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     // Set labels to show values
-                    labelHPValue.setText(controller.parseString("status").getAsString());
+                    if ("Running".equals(status)){
+                        statusValue.setText("Game is running");
+                    }
+                    
                     
                     // Update panel and print tests
                     aircraftUpdatePanel.revalidate();
@@ -292,11 +289,9 @@ public class WRView extends javax.swing.JFrame {
     private javax.swing.JLabel labeLossValue;
     public javax.swing.JLabel labeWRValue;
     private javax.swing.JLabel labeWinValue;
-    private javax.swing.JLabel labelHPText;
-    private javax.swing.JLabel labelHPValue;
     private javax.swing.JLabel labelLossText;
-    private javax.swing.JLabel labelRPMThrottle;
-    private javax.swing.JLabel labelThrottleValue;
+    private javax.swing.JLabel labelStatus;
+    public javax.swing.JLabel labelStatusValue;
     private javax.swing.JLabel labelWRText;
     private javax.swing.JLabel labelWinText;
     private javax.swing.JPanel panelMain;

@@ -26,10 +26,25 @@ public class WRController {
     WRController() throws IOException {
 
     }
-    
+    //http://localhost:8111/mission.json
     // Methods
-    // Http URL connection established
-    public HttpURLConnection httpGetRequest() throws MalformedURLException, IOException{
+   
+    // Http URL connection with MISSION
+    public HttpURLConnection httpGetRequestMission() throws MalformedURLException, IOException{
+        String url = "http://localhost:8111/mission.json";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        int responseCode = con.getResponseCode();
+        
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+        
+        return con;
+    }
+    
+    // Http URL connection with STATE
+    public HttpURLConnection httpGetRequestState() throws MalformedURLException, IOException{
         String url = "http://localhost:8111/state";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
