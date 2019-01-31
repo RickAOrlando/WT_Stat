@@ -246,10 +246,6 @@ public class WRView extends javax.swing.JFrame {
     
     public void initializeTimerOnMission(JLabel statusValue)
     {
-        // Variables
-        String status = controller.parseString("status").getAsString();
-            
-        
     TimerTask repeatedTask;
         repeatedTask = new TimerTask() 
         {
@@ -262,8 +258,17 @@ public class WRView extends javax.swing.JFrame {
                     Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     // Set labels to show values
-                    if ("Running".equals(status)){
+                    if ("running".equals(controller.parseString("status").getAsString())){
                         statusValue.setText("Game is running");
+                        //interger set to 1 if running
+                        // set to 0 if not running
+                        // if not running, then look for pass or fail
+                    }
+                    if ("fail".equals(controller.parseString("status").getAsString())){
+                        statusValue.setText("Failed");
+                    }
+                    if ("success".equals(controller.parseString("status").getAsString())){
+                        statusValue.setText("Success");
                     }
                     
                     
