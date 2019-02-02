@@ -42,7 +42,7 @@ public class WRView extends javax.swing.JFrame {
         }   
       
     
-    private int onOffSwitch = 0;   
+      
         /**
      * @return the onOffSwitch
      */
@@ -285,7 +285,7 @@ public class WRView extends javax.swing.JFrame {
                 
                 String wrText = winRate.getText();
                 int wrInt = Integer.parseInt(wrText);
-                
+
                 // Set labels to show values
                 String status = controller.parseString("status").getAsString();
                 if ("running".equals(status) && onOffSwitch == 0){
@@ -295,14 +295,15 @@ public class WRView extends javax.swing.JFrame {
                 if ("fail".equals(status) && onOffSwitch == 1){
                     statusValue.setText("fail");
                     onOffSwitch = 0;
-                    lossValue.setText("" + lvInt + 1);
-                    lvInt += 1;
+                    int lossCount = lvInt += 1;
+                    lossValue.setText("" + lossCount);
+
                 }
                 if ("success".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Success");
                     onOffSwitch = 0;
-                    winValue.setText("" + wvInt + 1);
-                    wvInt += 1;
+                    int winCount = wvInt += 1;
+                    winValue.setText("" + winCount);
                 }
                     
                     // Update panel and print tests
@@ -339,5 +340,6 @@ public class WRView extends javax.swing.JFrame {
     // Manual variable declaration   
     int winCounter;
     int lossCounter;
+    private int onOffSwitch = 0; 
     WRController controller;
 }   // End of Manual variable declaration   
