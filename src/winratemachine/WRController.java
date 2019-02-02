@@ -26,8 +26,6 @@ public class WRController {
     WRController() throws IOException {
 
     }
-    //http://localhost:8111/mission.json
-    // Methods
    
     // Http URL connection with MISSION
     public HttpURLConnection httpGetRequestMission() throws MalformedURLException, IOException{

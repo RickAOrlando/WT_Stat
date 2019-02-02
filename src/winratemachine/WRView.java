@@ -37,9 +37,26 @@ public class WRView extends javax.swing.JFrame {
         // Calling timer task method using arguments to pass in the labels 
         // and panels to be changed and updated
         //initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
-        this.initializeTimerOnMission(this.labelStatusValue);
+        this.initializeTimerOnMission(this.labelStatusValue, this.labeWinValue, 
+                this.labeLossValue, this.labeWRValue);
         }   
+      
+    
+    private int onOffSwitch = 0;   
+        /**
+     * @return the onOffSwitch
+     */
+    public int getOnOffSwitch() {
+        return onOffSwitch;
+    }
 
+    /**
+     * @param onOffSwitch the onOffSwitch to set
+     */
+    public void setOnOffSwitch(int onOffSwitch) {
+        this.onOffSwitch = onOffSwitch;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -244,7 +261,8 @@ public class WRView extends javax.swing.JFrame {
     timer2.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
-    public void initializeTimerOnMission(JLabel statusValue)
+    public void initializeTimerOnMission(JLabel statusValue, JLabel winValue, 
+            JLabel lossValue, JLabel winRate)
     {
     TimerTask repeatedTask;
         repeatedTask = new TimerTask() 
@@ -257,27 +275,42 @@ public class WRView extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    // Set labels to show values
-                    if ("running".equals(controller.parseString("status").getAsString())){
-                        statusValue.setText("Game is running");
-                        //interger set to 1 if running
-                        // set to 0 if not running
-                        // if not running, then look for pass or fail
-                    }
-                    if ("fail".equals(controller.parseString("status").getAsString())){
-                        statusValue.setText("Failed");
-                    }
-                    if ("success".equals(controller.parseString("status").getAsString())){
-                        statusValue.setText("Success");
-                    }
-                    
+                
+                //Local variables
+                String lvText = lossValue.getText();
+                int lvInt = Integer.parseInt(lvText);
+                
+                String wvText = winValue.getText();
+                int wvInt = Integer.parseInt(wvText);
+                
+                String wrText = winRate.getText();
+                int wrInt = Integer.parseInt(wrText);
+                
+                // Set labels to show values
+                String status = controller.parseString("status").getAsString();
+                if ("running".equals(status) && onOffSwitch == 0){
+                    statusValue.setText("Game is running");
+                    onOffSwitch = 1;
+                }
+                if ("fail".equals(status) && onOffSwitch == 1){
+                    statusValue.setText("fail");
+                    onOffSwitch = 0;
+                    lossValue.setText("" + lvInt + 1);
+                    lvInt += 1;
+                }
+                if ("success".equals(status) && onOffSwitch == 1){
+                    statusValue.setText("Success");
+                    onOffSwitch = 0;
+                    winValue.setText("" + wvInt + 1);
+                    wvInt += 1;
+                }
                     
                     // Update panel and print tests
                     aircraftUpdatePanel.revalidate();
                     System.out.println("Got mission information on " + new Date());
             }
         };
-                    Timer timer = new Timer("Timer");
+    Timer timer = new Timer("Timer");
      
     // Timer start delay
     long delay  = 500L;
