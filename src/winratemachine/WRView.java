@@ -285,25 +285,40 @@ public class WRView extends javax.swing.JFrame {
                 
                 String wrText = winRate.getText();
                 int wrInt = Integer.parseInt(wrText);
+                
+                int winRatePercent = 0;
 
                 // Set labels to show values
                 String status = controller.parseString("status").getAsString();
                 if ("running".equals(status) && onOffSwitch == 0){
                     statusValue.setText("Game is running");
                     onOffSwitch = 1;
+                    if (wvInt == 0){
+                        wvInt = -1;
+                        winRatePercent = ((wvInt+1 + lvInt)/wvInt)*100;
+                        winRate.setText(winRatePercent+"%");
+                    }
+                    else{
+                        winRatePercent = (wvInt + lvInt)/wvInt;
+                        winRate.setText(winRatePercent+"%");
+                    }
+                   
                 }
                 if ("fail".equals(status) && onOffSwitch == 1){
                     statusValue.setText("fail");
                     onOffSwitch = 0;
                     int lossCount = lvInt += 1;
+                    winRatePercent = (wvInt + lvInt)/wvInt;
                     lossValue.setText("" + lossCount);
-
+                    winRate.setText(winRatePercent+"%");
                 }
                 if ("success".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Success");
                     onOffSwitch = 0;
                     int winCount = wvInt += 1;
+                    winRatePercent = (wvInt + lvInt)/wvInt;
                     winValue.setText("" + winCount);
+                    winRate.setText(winRatePercent+"%");
                 }
                     
                     // Update panel and print tests
