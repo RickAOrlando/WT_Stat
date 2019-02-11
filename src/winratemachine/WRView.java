@@ -273,6 +273,9 @@ public class WRView extends javax.swing.JFrame {
     timer2.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
+    /*
+    Winrate logic pulled for Mission.json on timer
+    */
     public void initializeTimerOnMission(JLabel statusValue, JLabel winValue, 
             JLabel lossValue, JLabel winRateText)
     {
