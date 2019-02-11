@@ -15,8 +15,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.json.JSONArray;
-import org.json.JSONObject;
 /**
  *
  * @author Pussy Whisperer
@@ -29,21 +27,7 @@ public class WRController {
     
     // Contructor
     WRController() throws IOException {
-
     }
-    
-    //Offline Test Mission Method
-//    public void jsonTestReader() throws FileNotFoundException{
-//        String path = "C:\\Users\\Pussy Whisperer\\Desktop\\WT_Stat\\src\\files\\MissionTestReplica.json";
-//        final JSONObject obj = new JSONObject(path);
-//        final JSONArray geodata = obj.getJSONArray("geodata");
-//        final int n = geodata.length();
-//            for (int i = 0; i < n; ++i) {
-//                final JSONObject person = geodata.getJSONObject(i);
-//                System.out.println(person.getInt("status"));
-//            }
-//    }
-    //String url = "";
 
     // Http URL connection with MISSION
     public HttpURLConnection httpGetRequestMission() throws MalformedURLException, IOException{
