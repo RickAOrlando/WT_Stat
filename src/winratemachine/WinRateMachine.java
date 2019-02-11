@@ -21,8 +21,6 @@ public class WinRateMachine {
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, MalformedURLException, ProtocolException, IOException {
 
-        // Instantiate the WRController class
-
         // Create and display the form
         java.awt.EventQueue.invokeLater(() -> {
             try {

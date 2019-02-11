@@ -34,14 +34,29 @@ public class WRView extends javax.swing.JFrame {
         // Instantiate the controller
         controller = new WRController();
         
-        // Calling timer task method using arguments to pass in the labels 
-        // and panels to be changed and updated
-        //initializeTimerOnState(this.labelHPValue,this.labelThrottleValue, this.aircraftUpdatePanel);
+        /*
+        Uncomment out two lables below to test values
+        */
+        //this.labeLossValue.setText("5");
+        //this.labeWinValue.setText("10");
         this.initializeTimerOnMission(this.labelStatusValue, this.labeWinValue, 
                 this.labeLossValue, this.labeWRValue);
         }   
       
     
+    /**
+     * @return the winRatePercent
+     */
+    public float getWinRatePercent() {
+        return winRatePercent;
+    }
+
+    /**
+     * @param winRatePercent the winRatePercent to set
+     */
+    public void setWinRatePercent(float winRatePercent) {
+        this.winRatePercent = winRatePercent;
+    }
       
         /**
      * @return the onOffSwitch
@@ -259,7 +274,7 @@ public class WRView extends javax.swing.JFrame {
     }
     
     public void initializeTimerOnMission(JLabel statusValue, JLabel winValue, 
-            JLabel lossValue, JLabel winRate)
+            JLabel lossValue, JLabel winRateText)
     {
     TimerTask repeatedTask;
         repeatedTask = new TimerTask() 
@@ -268,57 +283,43 @@ public class WRView extends javax.swing.JFrame {
             public void run() 
             {
                 try {
-                    // Comment this line out to test
                     controller.bufferedReader(controller.httpGetRequestMission());
-                    //Get Test mission
-                    //controller.jsonTestReader();
-                    
                 } catch (IOException ex) {
                     Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 //Local variables
-                String lvText = lossValue.getText();
-                int lvInt = Integer.parseInt(lvText);
-                
-                String wvText = winValue.getText();
-                int wvInt = Integer.parseInt(wvText);
-                
-                int winRatePercent = 0;
+                float lvInt = Integer.parseInt(lossValue.getText());
+                float wvInt = Integer.parseInt(winValue.getText());
+
+                if (lvInt == 0 && wvInt == 0){
+                    winRateText.setText("No games played");
+                    statusValue.setText("Play first game");
+                }
+                else{
+                    float totalGames = wvInt + lvInt;
+                    winRatePercent = (wvInt / totalGames);
+                    winRateText.setText(winRatePercent*100 + "%");
+                }
 
                 // Set labels to show values
                 String status = controller.parseString("status").getAsString();
-                if ("running".equals(status) && onOffSwitch == 0){
+                if ("running".equals(status)){
                     statusValue.setText("Game is running");
                     onOffSwitch = 1;
- 
-                    if (wvInt == 0){
-                        winRate.setText("No games Played");
-                    }
-                    else{
-                        winRatePercent = wvInt/(wvInt + lvInt);
-                        winRate.setText(winRatePercent*100 + "%");
-                    }
-                   
                 }
                 if ("fail".equals(status) && onOffSwitch == 1){
-                    statusValue.setText("fail");
-                    
+                    statusValue.setText("Failed last game");
                     onOffSwitch = 0;
-                    int lossCount = lvInt += 1;
-                    winRatePercent = wvInt/(wvInt + lvInt);
+                    float lossCount = lvInt += 1;
                     lossValue.setText("" + lossCount);
-                    winRate.setText(winRatePercent*100 + "%");
                 }
                 if ("success".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Success");
                     onOffSwitch = 0;
-                    int winCount = wvInt += 1;
-                    winRatePercent = wvInt/(wvInt + lvInt);
+                    float winCount = wvInt += 1;
                     winValue.setText("" + winCount);
-                    winRate.setText(winRatePercent*100 + "%");
                 }
-                    
                     // Update panel and print tests
                     aircraftUpdatePanel.revalidate();
                     System.out.println("Got mission information on " + new Date());
@@ -354,5 +355,6 @@ public class WRView extends javax.swing.JFrame {
     int winCounter;
     int lossCounter;
     private int onOffSwitch = 0; 
+    private float winRatePercent;
     WRController controller;
 }   // End of Manual variable declaration   

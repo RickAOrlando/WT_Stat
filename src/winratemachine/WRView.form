@@ -76,7 +76,7 @@
                   <Component id="removeThisValue" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="110" max="32767" attributes="0"/>
               </Group>
-              <Component id="aircraftUpdatePanel" alignment="0" pref="0" max="32767" attributes="0"/>
+              <Component id="aircraftUpdatePanel" alignment="0" pref="116" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
