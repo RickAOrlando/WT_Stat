@@ -3,15 +3,20 @@
  * Class description:
  */
 package winratemachine;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  *
  * @author Pussy Whisperer
@@ -26,10 +31,24 @@ public class WRController {
     WRController() throws IOException {
 
     }
-   
+    
+    //Offline Test Mission Method
+    public void jsonTestReader() throws FileNotFoundException{
+        String path = "C:\\Users\\Pussy Whisperer\\Desktop\\WT_Stat\\src\\files\\MissionTestReplica.json";
+        final JSONObject obj = new JSONObject(path);
+        final JSONArray geodata = obj.getJSONArray("geodata");
+        final int n = geodata.length();
+            for (int i = 0; i < n; ++i) {
+                final JSONObject person = geodata.getJSONObject(i);
+                System.out.println(person.getInt("status"));
+            }
+    }
+    //String url = "";
+
     // Http URL connection with MISSION
     public HttpURLConnection httpGetRequestMission() throws MalformedURLException, IOException{
         String url = "http://localhost:8111/mission.json";
+        
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -59,12 +78,12 @@ public class WRController {
     public void bufferedReader(HttpURLConnection connection) throws IOException{
         try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()))) {
-            String inputLine;
-            response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);        
-            }
-        }
+                    String inputLine;
+                    response = new StringBuffer();
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);        
+                    }
+                }
     }
     
     // Parse the string and create a tree and JSON object
