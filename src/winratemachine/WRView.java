@@ -147,7 +147,7 @@ public class WRView extends javax.swing.JFrame {
                 .addComponent(labelWRText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labeWRValue)
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addGap(0, 152, Short.MAX_VALUE))
         );
         aircraftUpdatePanelLayout.setVerticalGroup(
             aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,36 +176,33 @@ public class WRView extends javax.swing.JFrame {
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(removeThisValue)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(removeThisValue))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(removeThisValue)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(110, Short.MAX_VALUE))
+            .addComponent(aircraftUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 345, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
         );
 
-        setBounds(0, 500, 345, 116);
+        setBounds(0, 500, 448, 116);
     }// </editor-fold>//GEN-END:initComponents
     
     // Timer task method
@@ -271,7 +268,11 @@ public class WRView extends javax.swing.JFrame {
             public void run() 
             {
                 try {
+                    // Comment this line out to test
                     controller.bufferedReader(controller.httpGetRequestMission());
+                    //Get Test mission
+                    //controller.jsonTestReader();
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(WRView.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -283,9 +284,6 @@ public class WRView extends javax.swing.JFrame {
                 String wvText = winValue.getText();
                 int wvInt = Integer.parseInt(wvText);
                 
-                String wrText = winRate.getText();
-                int wrInt = Integer.parseInt(wrText);
-                
                 int winRatePercent = 0;
 
                 // Set labels to show values
@@ -293,32 +291,32 @@ public class WRView extends javax.swing.JFrame {
                 if ("running".equals(status) && onOffSwitch == 0){
                     statusValue.setText("Game is running");
                     onOffSwitch = 1;
+ 
                     if (wvInt == 0){
-                        wvInt = -1;
-                        winRatePercent = ((wvInt+1 + lvInt)/wvInt)*100;
-                        winRate.setText(winRatePercent+"%");
+                        winRate.setText("No games Played");
                     }
                     else{
-                        winRatePercent = (wvInt + lvInt)/wvInt;
-                        winRate.setText(winRatePercent+"%");
+                        winRatePercent = wvInt/(wvInt + lvInt);
+                        winRate.setText(winRatePercent*100 + "%");
                     }
                    
                 }
                 if ("fail".equals(status) && onOffSwitch == 1){
                     statusValue.setText("fail");
+                    
                     onOffSwitch = 0;
                     int lossCount = lvInt += 1;
-                    winRatePercent = (wvInt + lvInt)/wvInt;
+                    winRatePercent = wvInt/(wvInt + lvInt);
                     lossValue.setText("" + lossCount);
-                    winRate.setText(winRatePercent+"%");
+                    winRate.setText(winRatePercent*100 + "%");
                 }
                 if ("success".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Success");
                     onOffSwitch = 0;
                     int winCount = wvInt += 1;
-                    winRatePercent = (wvInt + lvInt)/wvInt;
+                    winRatePercent = wvInt/(wvInt + lvInt);
                     winValue.setText("" + winCount);
-                    winRate.setText(winRatePercent+"%");
+                    winRate.setText(winRatePercent*100 + "%");
                 }
                     
                     // Update panel and print tests
