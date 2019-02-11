@@ -302,7 +302,7 @@ public class WRView extends javax.swing.JFrame {
                 else{
                     float totalGames = wvInt + lvInt;
                     winRatePercent = (wvInt / totalGames);
-                    winRateText.setText(winRatePercent*100 + "%");
+                    winRateText.setText(String.format("%.2f", winRatePercent*100) + "%");
                 }
 
                 // Set labels to show values
