@@ -33,10 +33,10 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         /*
         Uncomment out two lables below to test values
         */
-//        this.labeLossValue.setText("5");
-//        this.labeWinValue.setText("10");
-        this.initializeTimerOnMission(this.labelStatusValue, this.labeWinValue, 
-                this.labeLossValue, this.labeWRValue);
+//        this.labelLossValue.setText("5");
+//        this.labelWinValue.setText("10");
+        this.initializeTimerOnMission(this.labelStatusValue, this.labelWinValue, 
+                this.labelLossValue, this.labelWRValue);
         }   
 
     @SuppressWarnings("unchecked")
@@ -54,11 +54,11 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         labelStatusValue = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         labelWinText = new javax.swing.JLabel();
-        labeWinValue = new javax.swing.JLabel();
+        labelWinValue = new javax.swing.JLabel();
         labelLossText = new javax.swing.JLabel();
-        labeLossValue = new javax.swing.JLabel();
+        labelLossValue = new javax.swing.JLabel();
         labelWRText = new javax.swing.JLabel();
-        labeWRValue = new javax.swing.JLabel();
+        labelWRValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -93,20 +93,20 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         labelWinText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelWinText.setText("Win: ");
 
-        labeWinValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labeWinValue.setText("0");
+        labelWinValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelWinValue.setText("0");
 
         labelLossText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelLossText.setText("Loss: ");
 
-        labeLossValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labeLossValue.setText("0");
+        labelLossValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelLossValue.setText("0");
 
         labelWRText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelWRText.setText("WinRate: ");
 
-        labeWRValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labeWRValue.setText("0");
+        labelWRValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelWRValue.setText("0");
 
         javax.swing.GroupLayout aircraftUpdatePanelLayout = new javax.swing.GroupLayout(aircraftUpdatePanel);
         aircraftUpdatePanel.setLayout(aircraftUpdatePanelLayout);
@@ -125,15 +125,15 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                         .addContainerGap()
                         .addComponent(labelWinText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labeWinValue)
+                        .addComponent(labelWinValue)
                         .addGap(18, 18, 18)
                         .addComponent(labelLossText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labeLossValue)
+                        .addComponent(labelLossValue)
                         .addGap(18, 18, 18)
                         .addComponent(labelWRText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labeWRValue))
+                        .addComponent(labelWRValue))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
@@ -143,11 +143,11 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(aircraftUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelWinText)
-                    .addComponent(labeWinValue)
+                    .addComponent(labelWinValue)
                     .addComponent(labelLossText)
-                    .addComponent(labeLossValue)
+                    .addComponent(labelLossValue)
                     .addComponent(labelWRText)
-                    .addComponent(labeWRValue))
+                    .addComponent(labelWRValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -211,7 +211,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 182, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
         );
 
         setBounds(0, 500, 435, 182);
@@ -226,7 +226,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /*
@@ -300,14 +300,14 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel labeLossValue;
-    public javax.swing.JLabel labeWRValue;
-    private javax.swing.JLabel labeWinValue;
     private javax.swing.JLabel labelLossText;
+    private javax.swing.JLabel labelLossValue;
     private javax.swing.JLabel labelStatus;
     public javax.swing.JLabel labelStatusValue;
     private javax.swing.JLabel labelWRText;
+    public javax.swing.JLabel labelWRValue;
     private javax.swing.JLabel labelWinText;
+    private javax.swing.JLabel labelWinValue;
     private javax.swing.JPanel panelMain;
     private javax.swing.JLabel removeThisValue;
     private javax.swing.JButton saveButton;

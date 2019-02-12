@@ -69,4 +69,32 @@ public class SpareCode {
 //    timer2.scheduleAtFixedRate(repeatedTask, delay, period);
 //    }
 
+    
+//        /**
+//     * @return the winRatePercent
+//     */
+//    public float getWinRatePercent() {
+//        return winRatePercent;
+//    }
+//
+//    /**
+//     * @param winRatePercent the winRatePercent to set
+//     */
+//    public void setWinRatePercent(float winRatePercent) {
+//        this.winRatePercent = winRatePercent;
+//    }
+//      
+//        /**
+//     * @return the onOffSwitch
+//     */
+//    public int getOnOffSwitch() {
+//        return onOffSwitch;
+//    }
+//
+//    /**
+//     * @param onOffSwitch the onOffSwitch to set
+//     */
+//    public void setOnOffSwitch(int onOffSwitch) {
+//        this.onOffSwitch = onOffSwitch;
+//    }
 }

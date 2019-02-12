@@ -171,15 +171,15 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelWinText" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labeWinValue" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelWinValue" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="labelLossText" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labeLossValue" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelLossValue" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="labelWRText" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labeWRValue" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelWRValue" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -193,11 +193,11 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelWinText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labeWinValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelWinValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labelLossText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labeLossValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelLossValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labelWRText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labeWRValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelWRValue" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
@@ -250,7 +250,7 @@
                     <Property name="text" type="java.lang.String" value="Win: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="labeWinValue">
+                <Component class="javax.swing.JLabel" name="labelWinValue">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="18" style="1"/>
@@ -266,7 +266,7 @@
                     <Property name="text" type="java.lang.String" value="Loss: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="labeLossValue">
+                <Component class="javax.swing.JLabel" name="labelLossValue">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="18" style="1"/>
@@ -282,7 +282,7 @@
                     <Property name="text" type="java.lang.String" value="WinRate: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="labeWRValue">
+                <Component class="javax.swing.JLabel" name="labelWRValue">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="18" style="1"/>
