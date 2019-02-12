@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 /**
  *
  * @author Pussy Whisperer
@@ -39,35 +38,7 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
         this.initializeTimerOnMission(this.labelStatusValue, this.labeWinValue, 
                 this.labeLossValue, this.labeWRValue);
         }   
-      
-    /**
-     * @return the winRatePercent
-     */
-    public float getWinRatePercent() {
-        return winRatePercent;
-    }
 
-    /**
-     * @param winRatePercent the winRatePercent to set
-     */
-    public void setWinRatePercent(float winRatePercent) {
-        this.winRatePercent = winRatePercent;
-    }
-      
-        /**
-     * @return the onOffSwitch
-     */
-    public int getOnOffSwitch() {
-        return onOffSwitch;
-    }
-
-    /**
-     * @param onOffSwitch the onOffSwitch to set
-     */
-    public void setOnOffSwitch(int onOffSwitch) {
-        this.onOffSwitch = onOffSwitch;
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -316,9 +287,9 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
     Timer timer = new Timer("Timer");
      
     // Timer start delay
-    long delay  = 500L;
+    long delay  = 250L;
     // Timer repeat interval 
-    long period = 50L;
+    long period = 1000L;
     timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
     
