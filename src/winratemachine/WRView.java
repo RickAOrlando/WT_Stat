@@ -3,10 +3,6 @@
  * Class description:
  */
 package winratemachine;
-
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -43,7 +39,6 @@ public class WRView extends javax.swing.JFrame {
                 this.labeLossValue, this.labeWRValue);
         }   
       
-    
     /**
      * @return the winRatePercent
      */
@@ -318,7 +313,7 @@ public class WRView extends javax.swing.JFrame {
                     lossValue.setText("" + lossCount);
                 }
                 if ("success".equals(status) && onOffSwitch == 1){
-                    statusValue.setText("Success");
+                    statusValue.setText("Succeeded last game");
                     onOffSwitch = 0;
                     float winCount = wvInt += 1;
                     winValue.setText("" + winCount);
