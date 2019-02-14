@@ -251,32 +251,38 @@ public class WRView extends javax.swing.JFrame implements ActionListener {
                 float lvInt = Integer.parseInt(lossValue.getText());
                 float wvInt = Integer.parseInt(winValue.getText());
 
+                // Checking for division by 0
                 if (lvInt == 0 && wvInt == 0){
                     winRateText.setText("No games played");
                     statusValue.setText("Play first game");
                 }
-                else {
+                else 
+                {
                     float totalGames = wvInt + lvInt;
                     winRatePercent = (wvInt / totalGames);
                     winRateText.setText(String.format("%.2f", winRatePercent*100) + "%");
                 }
 
-                // Set labels to show values
+                // Checking Status
                 String status = controller.parseString("status").getAsString();
+                
+                // Running
                 if ("running".equals(status)){
                     statusValue.setText("Game is running");
                     onOffSwitch = 1;
                 }
+                // Fail
                 if ("fail".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Failed last game");
                     onOffSwitch = 0;
                     float lossCount = lvInt += 1;
                     lossValue.setText("" + lossCount);
                 }
+                // Success
                 if ("success".equals(status) && onOffSwitch == 1){
                     statusValue.setText("Succeeded last game");
                     onOffSwitch = 0;
-                    float winCount = wvInt += 1;
+                    double winCount = wvInt += 1;
                     winValue.setText("" + winCount);
                 }
                     // Update panel and print tests
